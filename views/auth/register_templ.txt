@@ -1,0 +1,1 @@
+<form hx-post=\"/api/v1/register\" hx-target=\"#res\" hx-swap=\"innerHTML\" class=\"flex flex-col gap-2 max-w-[500px]\"><input name=\"email\" type=\"email\" required> <input name=\"password\" type=\"password\" required> <span id=\"res\"></span> <button type=\"submit\">Register</button></form>
