@@ -6,4 +6,4 @@ build:
 
 
 css:
-	tailwindcss -i views/css/app.css -o public/styles.css --watch   
+	tailwindcss -i views/globals.css -o public/styles.css --watch   

@@ -28,6 +28,8 @@ func main() {
 		AllowCredentials: false,
 		MaxAge:           300, // Maximum value not ignored by any of major browsers
 	}))
+	fs := http.FileServer(http.Dir("public"))
+	r.Handle("/public/*", http.StripPrefix("/public", fs))
 
 	// routes for ui
 	r.Get("/", handlers.Make(ui.HandleHome))
@@ -45,8 +47,6 @@ func main() {
 	})
 
 	// serve static files
-	fs := http.FileServer(http.Dir("public"))
-	r.Handle("/public/*", http.StripPrefix("/public", fs))
 
 	listerAddr := os.Getenv("PORT")
 	slog.Info("Server started on port", "listerAddr", listerAddr)

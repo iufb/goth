@@ -8,5 +8,5 @@ import (
 )
 
 func HandleHome(w http.ResponseWriter, r *http.Request) error {
-	return handlers.Render(w, r, home.Index())
+	return handlers.Render(w, r, home.Index(), http.StatusOK)
 }

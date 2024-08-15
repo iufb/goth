@@ -8,6 +8,7 @@ import (
 	"github.com/iufb/goth/internal/models"
 	"github.com/iufb/goth/internal/services"
 	"github.com/iufb/goth/pkg/utils"
+	"github.com/iufb/goth/views/shared"
 )
 
 func RegisterHandler(service *services.UserService) handlers.HTTPHandler {
@@ -17,7 +18,7 @@ func RegisterHandler(service *services.UserService) handlers.HTTPHandler {
 		payload.Password = r.FormValue("password")
 		status, err := service.RegisterUser(&payload)
 		if err != nil {
-			utils.WriteError(w, status, err)
+			handlers.Render(w, r, shared.Error(err.Error()), status)
 			return fmt.Errorf("Register user error :  %v", err)
 		}
 		return utils.WriteJSON(w, http.StatusCreated, "Registered")

@@ -1,5 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.html", "./**/*.templ", "./**/*.go"],
+  content: [
+    "./views/**/*.{templ,go}",
+    "./public/**/*.css",
+    "./internal/handlers/**/*.{go,templ}",
+    "./cmd/app/**/*.go",
+  ],
+
   safelist: [],
 };

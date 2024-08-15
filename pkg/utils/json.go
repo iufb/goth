@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 func ParseJSON(r *http.Request, payload any) error {
@@ -20,5 +21,6 @@ func WriteJSON(w http.ResponseWriter, status int, v any) error {
 }
 
 func WriteError(w http.ResponseWriter, status int, err error) {
-	WriteJSON(w, status, map[string]string{"error": err.Error()})
+	errMessage := strings.Trim(err.Error(), "\"")
+	WriteJSON(w, status, errMessage)
 }

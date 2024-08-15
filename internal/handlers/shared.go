@@ -17,6 +17,7 @@ func Make(h HTTPHandler) http.HandlerFunc {
 	}
 }
 
-func Render(w http.ResponseWriter, r *http.Request, c templ.Component) error {
+func Render(w http.ResponseWriter, r *http.Request, c templ.Component, status int) error {
+	w.WriteHeader(status)
 	return c.Render(r.Context(), w)
 }

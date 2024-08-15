@@ -22,7 +22,7 @@ func NewUserService(repo repositories.UserRepository) *UserService {
 func (s *UserService) RegisterUser(payload *models.AuthPayload) (int, error) {
 	u, err := s.repo.FindByEmail(payload.Email)
 	if u != nil {
-		return http.StatusBadRequest, fmt.Errorf("User already exists.")
+		return http.StatusUnprocessableEntity, fmt.Errorf("User already exists.")
 	}
 	hashed, err := utils.HashPass(payload.Password)
 	if err != nil {

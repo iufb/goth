@@ -8,5 +8,5 @@ import (
 )
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) error {
-	return handlers.Render(w, r, auth.Register())
+	return handlers.Render(w, r, auth.Register(), http.StatusOK)
 }
