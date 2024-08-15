@@ -3,6 +3,7 @@ package services
 import (
 	"fmt"
 	"net/http"
+
 	"github.com/iufb/goth/internal/models"
 	"github.com/iufb/goth/internal/repositories"
 	"github.com/iufb/goth/pkg/utils"
@@ -35,6 +36,17 @@ func (s *UserService) RegisterUser(payload *models.AuthPayload) (int, error) {
 		return http.StatusInternalServerError, fmt.Errorf("Create user error.")
 	}
 
-	return 0, nil
+	return http.StatusCreated, nil
 }
-func( s*UserService) LoginUser
+
+func (s *UserService) LoginUser(payload *models.AuthPayload) (int, error) {
+	u, err := s.repo.FindByEmail(payload.Email)
+	if err != nil {
+		return http.StatusUnauthorized, fmt.Errorf("User not found.")
+	}
+	// check password
+	if !utils.ValidatePassword(u.Password, payload.Password) {
+		return http.StatusUnauthorized, fmt.Errorf("Wrong password, try again.")
+	}
+	return http.StatusOK, nil
+}

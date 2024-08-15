@@ -34,6 +34,7 @@ func main() {
 	// routes for ui
 	r.Get("/", handlers.Make(ui.HandleHome))
 	r.Get("/register", handlers.Make(ui.HandleRegister))
+	r.Get("/login", handlers.Make(ui.HandleLogin))
 
 	db, err := db.Initialize()
 	if err != nil {
@@ -44,6 +45,7 @@ func main() {
 		userRepo := repositories.NewGormUserRepository(db)
 		userService := services.NewUserService(userRepo)
 		r.Post("/register", handlers.Make(api.RegisterHandler(userService)))
+		r.Post("/login", handlers.Make(api.LoginHandler(userService)))
 	})
 
 	// serve static files
