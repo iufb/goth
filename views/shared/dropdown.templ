@@ -1,0 +1,17 @@
+
+package shared
+
+templ Dropdown(btnText string, items []string) {
+	<button class="uk-button uk-button-default" type="button">{ btnText }</button>
+	<div class="uk-drop uk-dropdown" uk-dropdown="mode: click">
+		<ul class="uk-dropdown-nav uk-nav">
+			for _, item := range items {
+				@DropdownItem(item)
+			}
+		</ul>
+	</div>
+}
+
+templ DropdownItem(item string) {
+	<li><a href="#">{ item }</a></li>
+}

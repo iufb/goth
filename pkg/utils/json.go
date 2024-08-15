@@ -20,7 +20,7 @@ func WriteJSON(w http.ResponseWriter, status int, v any) error {
 	return json.NewEncoder(w).Encode(v)
 }
 
-func WriteError(w http.ResponseWriter, status int, err error) {
+func WriteJSONError(w http.ResponseWriter, status int, err error) {
 	errMessage := strings.Trim(err.Error(), "\"")
 	WriteJSON(w, status, errMessage)
 }

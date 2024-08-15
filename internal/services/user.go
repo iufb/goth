@@ -3,7 +3,6 @@ package services
 import (
 	"fmt"
 	"net/http"
-
 	"github.com/iufb/goth/internal/models"
 	"github.com/iufb/goth/internal/repositories"
 	"github.com/iufb/goth/pkg/utils"
@@ -38,3 +37,4 @@ func (s *UserService) RegisterUser(payload *models.AuthPayload) (int, error) {
 
 	return 0, nil
 }
+func( s*UserService) LoginUser

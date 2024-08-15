@@ -18,7 +18,8 @@ func RegisterHandler(service *services.UserService) handlers.HTTPHandler {
 		payload.Password = r.FormValue("password")
 		status, err := service.RegisterUser(&payload)
 		if err != nil {
-			handlers.Render(w, r, shared.Error(err.Error()), status)
+			// utils.WriteError(w, status, err)
+			handlers.Render(w, r, shared.Error("Щи"), status)
 			return fmt.Errorf("Register user error :  %v", err)
 		}
 		return utils.WriteJSON(w, http.StatusCreated, "Registered")
